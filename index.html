@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Germina | Soluciones digitales a tu medida</title>
+<meta name="description" content="Sistemas modulares para PyMEs: control de asistencia, expedientes de personal, evaluaciones de desempeño y catálogo de proveedores. Empieza con un módulo y agrega los que necesites.">
+<meta name="theme-color" content="#68539c">
+<meta property="og:title" content="Germina | Soluciones digitales a tu medida">
+<meta property="og:description" content="Empieza con un módulo. Agrega los que necesites.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F9ECE5'/%3E%3Cpath d='M32 44V26' stroke='%2368539c' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M32 32C21 32 16 24 18 14 27 14 32 21 32 32Z' fill='%23258890'/%3E%3Cpath d='M32 27C40 27 47 21 47 10 38 10 32 16 32 27Z' fill='%2368539c'/%3E%3Crect x='6' y='42' width='24' height='16' rx='3' fill='%2368539c'/%3E%3Crect x='34' y='42' width='24' height='16' rx='3' fill='%23258890'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --durazno:#F9ECE5;
+  --crema:#FFF8F4;
+  --morado:#68539c;
+  --morado-hondo:#2E2450;
+  --verde:#258890;
+  --verde-hondo:#1B666C;
+  --texto:#2E2450;
+  --texto-suave:#5A4F7A;
+  --linea:#E3CFC4;
+  --ancho:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--durazno);color:var(--texto);font-family:'DM Sans',system-ui,sans-serif;font-size:18px;line-height:1.6}
+h1,h2,h3{font-family:'Outfit',sans-serif;font-weight:600;line-height:1.1;margin:0;letter-spacing:-0.01em}
+p{margin:0}
+a{color:inherit}
+.contenedor{max-width:var(--ancho);margin:0 auto;padding:0 24px}
+:focus-visible{outline:3px solid var(--verde);outline-offset:3px;border-radius:4px}
+
+/* Encabezado */
+.encabezado{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca span{font-family:'Outfit',sans-serif;font-weight:600;font-size:28px;color:var(--morado);letter-spacing:-0.01em}
+.navegacion{display:flex;align-items:center;gap:28px}
+.navegacion a.enlace{text-decoration:none;font-weight:500}
+.navegacion a.enlace:hover{text-decoration:underline;text-underline-offset:6px}
+
+/* Botones */
+.boton{display:inline-block;text-decoration:none;font-weight:700;font-size:17px;padding:14px 24px;border-radius:999px;background:var(--morado);color:#fff;border:2px solid var(--morado)}
+.boton:hover{background:var(--morado-hondo);border-color:var(--morado-hondo)}
+.boton-claro{background:var(--durazno);color:var(--morado-hondo);border-color:var(--durazno)}
+.boton-claro:hover{background:#fff;border-color:#fff}
+.boton-linea{background:transparent;color:var(--morado-hondo);border-color:var(--morado-hondo)}
+.boton-linea:hover{background:var(--morado-hondo);color:#fff}
+
+/* Portada */
+.portada{padding:48px 0 88px}
+.portada-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:56px;align-items:center}
+.portada h1{font-size:clamp(40px,6vw,68px);color:var(--morado-hondo)}
+.portada .bajada{margin-top:24px;font-size:20px;color:var(--texto-suave);max-width:34em}
+.portada .acciones{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+
+/* Muro de bloques */
+.muro{display:flex;flex-direction:column;align-items:center}
+.brote{width:132px;height:auto;display:block;margin-bottom:-2px;overflow:visible}
+.bloques{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;max-width:440px}
+.bloque{aspect-ratio:3/2;border-radius:18px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+.bloque b{font-family:'Outfit',sans-serif;font-weight:600;font-size:clamp(19px,2.4vw,24px);line-height:1.1}
+.bloque small{font-size:15px;line-height:1.3}
+.b-morado{background:var(--morado);color:#fff}
+.b-verde{background:var(--verde-hondo);color:#fff}
+.b-durazno{background:#EBCFC1;color:var(--morado-hondo)}
+.b-hondo{background:var(--morado-hondo);color:#fff}
+
+/* Animacion de la portada: el brote crece una sola vez */
+.tallo{stroke-dasharray:40;stroke-dashoffset:0}
+.hoja{transform-box:fill-box}
+.hoja-izq{transform-origin:100% 100%}
+.hoja-der{transform-origin:0% 100%}
+@media (prefers-reduced-motion:no-preference){
+  .tallo{animation:crece-tallo .8s ease-out both}
+  .hoja-izq{animation:abre-hoja .7s .6s ease-out both}
+  .hoja-der{animation:abre-hoja .7s .8s ease-out both}
+}
+@keyframes crece-tallo{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+@keyframes abre-hoja{from{transform:scale(0)}to{transform:scale(1)}}
+
+/* Secciones */
+.seccion{padding:88px 0}
+.seccion-clara{background:var(--crema)}
+.seccion h2{font-size:clamp(32px,4.4vw,48px);max-width:18em}
+.seccion .intro{margin-top:16px;font-size:20px;color:var(--texto-suave);max-width:36em}
+
+/* Modulos */
+.modulos{margin-top:48px;border-top:1px solid var(--linea)}
+.modulo{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:40px;padding:40px 0;border-bottom:1px solid var(--linea)}
+.modulo-cabeza{display:flex;gap:18px;align-items:flex-start}
+.ficha{flex:none;width:56px;height:38px;border-radius:9px;margin-top:6px}
+.modulo h3{font-size:clamp(26px,3.2vw,34px)}
+.modulo .resumen{margin-top:10px;color:var(--texto-suave)}
+.modulo ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.modulo li{position:relative;padding-left:26px}
+.modulo li::before{content:"";position:absolute;left:0;top:0.6em;width:11px;height:11px;border-radius:3px;background:var(--verde)}
+.nota-modular{margin-top:32px;padding:24px 28px;background:var(--morado);color:#fff;border-radius:18px;font-size:19px}
+.nota-modular b{font-family:'Outfit',sans-serif;font-weight:600}
+
+/* Mas modulos */
+.mas{margin-top:48px}
+.mas h3{font-size:clamp(24px,3vw,30px)}
+.mas-lista{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.mas-lista li{border-top:4px solid var(--morado);padding-top:16px}
+.mas-lista b{display:block;font-family:'Outfit',sans-serif;font-weight:600;font-size:21px;line-height:1.2;margin-bottom:6px}
+.mas-lista span{color:var(--texto-suave);font-size:17px}
+
+/* A la medida */
+.medida{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.medida p{font-size:20px;color:var(--texto-suave)}
+.medida ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.medida li{position:relative;padding-left:26px}
+.medida li::before{content:"";position:absolute;left:0;top:0.6em;width:11px;height:11px;border-radius:3px;background:var(--verde)}
+
+/* Instalacion */
+.opciones{margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.opcion{border-top:4px solid var(--verde);padding-top:20px}
+.opcion h3{font-size:26px}
+.opcion p{margin-top:10px;color:var(--texto-suave)}
+.aviso{margin-top:32px;color:var(--texto-suave)}
+.opciones-2{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 48px}
+.opciones-2 .opcion{border-top-color:var(--morado)}
+
+/* Pasos */
+.pasos{margin-top:48px;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;counter-reset:paso}
+.pasos li{counter-increment:paso}
+.pasos li::before{content:counter(paso);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--morado);color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:20px;margin-bottom:16px}
+.pasos b{display:block;font-family:'Outfit',sans-serif;font-weight:600;font-size:22px;line-height:1.2;margin-bottom:6px}
+.pasos span{color:var(--texto-suave)}
+
+/* Contacto */
+.contacto{background:var(--morado);color:#fff;padding:88px 0}
+.contacto h2{font-size:clamp(34px,5vw,56px);max-width:14em}
+.contacto .intro{margin-top:16px;font-size:20px;max-width:32em;color:#F9ECE5}
+.contacto-grid{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center}
+.datos{display:grid;gap:6px;font-size:19px}
+.datos a{text-underline-offset:4px}
+.contacto :focus-visible{outline-color:var(--durazno)}
+
+/* Pie */
+.pie{background:var(--morado-hondo);color:#F9ECE5;padding:28px 0;font-size:16px}
+.pie .contenedor{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+
+/* Responsive */
+@media (max-width:900px){
+  .portada-grid{grid-template-columns:1fr;gap:48px}
+  .modulo{grid-template-columns:1fr;gap:20px}
+  .opciones{grid-template-columns:1fr;gap:28px}
+  .pasos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .medida{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .navegacion a.enlace{display:none}
+  .portada{padding:24px 0 64px}
+  .seccion,.contacto{padding:64px 0}
+  .pasos{grid-template-columns:1fr}
+  .mas-lista{grid-template-columns:1fr}
+  .boton{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+  <header class="encabezado">
+    <a class="marca" href="#inicio" aria-label="Germina, inicio">
+      <svg viewBox="0 0 64 64" width="44" height="44" aria-hidden="true">
+        <path d="M32 44 V26" stroke="#68539c" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M32 32 C21 32 16 24 18 14 C27 14 32 21 32 32 Z" fill="#258890"/>
+        <path d="M32 27 C40 27 47 21 47 10 C38 10 32 16 32 27 Z" fill="#68539c"/>
+        <rect x="6" y="42" width="24" height="16" rx="3" fill="#68539c"/>
+        <rect x="34" y="42" width="24" height="16" rx="3" fill="#258890"/>
+      </svg>
+      <span>Germina</span>
+    </a>
+    <nav class="navegacion" aria-label="Principal">
+      <a class="enlace" href="#modulos">Módulos</a>
+      <a class="enlace" href="#instalacion">Instalación</a>
+      <a class="boton" href="#contacto">Contacto</a>
+    </nav>
+  </header>
+</div>
+
+<main id="inicio">
+  <section class="portada">
+    <div class="contenedor portada-grid">
+      <div>
+        <h1>Empieza con un módulo. Agrega los que necesites.</h1>
+        <p class="bajada">Germina crea software a tu medida para PyMEs. Partimos de módulos listos, como control de asistencia, expedientes o evaluaciones, y los adaptamos a cómo trabajas. Si lo que necesitas no existe, tú lo imaginas y nosotros lo creamos.</p>
+        <div class="acciones">
+          <a class="boton" href="#contacto">Pide una propuesta</a>
+          <a class="boton boton-linea" href="#modulos">Ver los módulos</a>
+        </div>
+      </div>
+      <div class="muro" role="img" aria-label="Cuatro bloques que representan los módulos de Germina, con un brote que crece encima">
+        <svg class="brote" viewBox="0 0 64 56" aria-hidden="true">
+          <path class="tallo" d="M32 56 V22" stroke="#68539c" stroke-width="3" stroke-linecap="round" fill="none" pathLength="40"/>
+          <path class="hoja hoja-izq" d="M32 30 C21 30 16 22 18 12 C27 12 32 19 32 30 Z" fill="#258890"/>
+          <path class="hoja hoja-der" d="M32 24 C40 24 47 18 47 7 C38 7 32 13 32 24 Z" fill="#68539c"/>
+        </svg>
+        <div class="bloques" aria-hidden="true">
+          <div class="bloque b-morado"><b>Asistencia</b><small>Checador y puntualidad</small></div>
+          <div class="bloque b-verde"><b>Expedientes</b><small>Personal y documentos</small></div>
+          <div class="bloque b-durazno"><b>Evaluaciones</b><small>Desempeño del equipo</small></div>
+          <div class="bloque b-hondo"><b>Proveedores</b><small>Catálogo y expedientes</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion-clara" id="modulos">
+    <div class="contenedor">
+      <h2>Módulos que se arman como los necesites</h2>
+      <p class="intro">Contrata uno, varios o imagina el propio. Cada módulo funciona solo, se conecta con los demás y se adapta a cómo trabaja tu empresa.</p>
+
+      <div class="modulos">
+        <article class="modulo">
+          <div class="modulo-cabeza">
+            <div class="ficha" style="background:#68539c" aria-hidden="true"></div>
+            <div>
+              <h3>Control de asistencia</h3>
+              <p class="resumen">Quién llegó, a qué hora y con cuántos minutos de retraso.</p>
+            </div>
+          </div>
+          <ul>
+            <li>Sube el archivo del checador o conéctalo para que los registros lleguen solos, según el modelo de tu equipo.</li>
+            <li>Calcula retardos, faltas y horas trabajadas con tus horarios y tolerancias.</li>
+            <li>¿Trabajas por turnos o con descansos rotativos? Lo adaptamos a tu operación.</li>
+            <li>Muestra un semáforo de puntualidad por empleado.</li>
+            <li>Calcula los días de vacaciones que corresponden por antigüedad y lleva el saldo de cada persona.</li>
+            <li>Exporta reportes a Excel o PDF.</li>
+          </ul>
+        </article>
+
+        <article class="modulo">
+          <div class="modulo-cabeza">
+            <div class="ficha" style="background:#1B666C" aria-hidden="true"></div>
+            <div>
+              <h3>Expedientes de personal</h3>
+              <p class="resumen">Los datos y documentos de cada empleado en un solo lugar.</p>
+            </div>
+          </div>
+          <ul>
+            <li>Ficha del empleado con sus documentos: contrato, INE, RFC, CURP y comprobante de domicilio.</li>
+            <li>Porcentaje de avance de cada expediente.</li>
+            <li>Ves de un vistazo qué documentos faltan y de quién.</li>
+          </ul>
+        </article>
+
+        <article class="modulo">
+          <div class="modulo-cabeza">
+            <div class="ficha" style="background:#EBCFC1;border:1px solid #cfb2a3" aria-hidden="true"></div>
+            <div>
+              <h3>Evaluaciones de desempeño</h3>
+              <p class="resumen">Evalúa al equipo con el mismo criterio cada periodo.</p>
+            </div>
+          </div>
+          <ul>
+            <li>Evaluación del jefe, autoevaluación y evaluación 360.</li>
+            <li>Habilidades, valores y metas en una sola evaluación.</li>
+            <li>Resultados por trimestre y por área.</li>
+            <li>Información para decidir bonos con criterios claros.</li>
+          </ul>
+        </article>
+
+        <article class="modulo">
+          <div class="modulo-cabeza">
+            <div class="ficha" style="background:#2E2450" aria-hidden="true"></div>
+            <div>
+              <h3>Catálogo de proveedores</h3>
+              <p class="resumen">Todos tus proveedores y sus documentos, ordenados.</p>
+            </div>
+          </div>
+          <ul>
+            <li>Expediente de cada proveedor con sus documentos.</li>
+            <li>Porcentaje de completitud para saber a quién le falta qué.</li>
+            <li>Los proveedores sin compras en seis meses se marcan como inactivos.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="mas">
+        <h3>También disponibles</h3>
+        <ul class="mas-lista">
+          <li><b>Calidad ISO 9001</b><span>Auditorías y hallazgos con semáforo por departamento.</span></li>
+          <li><b>Ventas</b><span>Pedidos, remisiones y facturas, con metas por vendedor.</span></li>
+          <li><b>Desarrollo a la medida</b><span>Módulos hechos para tu operación. <a href="#a-medida">Ver ejemplos</a></span></li>
+        </ul>
+      </div>
+
+      <p class="nota-modular"><b>Una sola base de información.</b> Das de alta a un empleado una vez y aparece en asistencia, expedientes y evaluaciones.</p>
+    </div>
+  </section>
+
+  <section class="seccion" id="instalacion">
+    <div class="contenedor">
+      <h2>Dónde vive tu sistema lo decides tú</h2>
+      <p class="intro">Elegimos contigo la opción que mejor se ajuste a tu empresa, tu presupuesto y tu equipo.</p>
+      <div class="opciones">
+        <div class="opcion">
+          <h3>En una computadora de tu empresa</h3>
+          <p>La opción más sencilla y económica. Se usa desde la red interna de la oficina.</p>
+        </div>
+        <div class="opcion">
+          <h3>En un servidor propio</h3>
+          <p>Para empresas con varias áreas o sucursales conectadas, que quieren control total de sus datos.</p>
+        </div>
+        <div class="opcion">
+          <h3>En la nube</h3>
+          <p>Entras desde cualquier lugar con internet, sin equipos de más en tu oficina.</p>
+        </div>
+      </div>
+      <p class="aviso">Si tu checador está en la oficina y el sistema en la nube, lo conectamos con un componente seguro instalado en tu red.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion-clara" id="proceso">
+    <div class="contenedor">
+      <h2>Así trabajamos contigo</h2>
+      <ol class="pasos">
+        <li><b>Platicamos</b><span>Nos cuentas cómo llevas hoy tu asistencia, expedientes y proveedores.</span></li>
+        <li><b>Proponemos</b><span>Te presentamos los módulos que necesitas, la forma de instalarlos y el precio.</span></li>
+        <li><b>Instalamos</b><span>Configuramos el sistema con tus horarios y reglas, y cargamos tu información.</span></li>
+        <li><b>Acompañamos</b><span>Capacitamos a tu equipo y damos soporte cuando lo necesites.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion" id="integraciones">
+    <div class="contenedor">
+      <h2>Conectamos tus herramientas y automatizamos lo repetitivo</h2>
+      <p class="intro">Si ya usas Microsoft 365, Excel, un ERP o un CRM, no tienes que cambiarlos. Los conectamos entre sí y dejamos que las tareas repetidas se hagan solas.</p>
+      <div class="opciones opciones-2">
+        <div class="opcion">
+          <h3>Microsoft 365</h3>
+          <p>Envía reportes y avisos automáticos desde el correo de tu empresa, y lee la bandeja para ordenar las respuestas que llegan. La conexión usa acceso autorizado por tu empresa.</p>
+        </div>
+        <div class="opcion">
+          <h3>Budibase</h3>
+          <p>Armamos pantallas, formularios y un CRM ligero de seguimiento en Budibase, una plataforma de aplicaciones internas, y los conectamos con tus sistemas.</p>
+        </div>
+        <div class="opcion">
+          <h3>Inteligencia artificial</h3>
+          <p>Redacta borradores de mensajes y clasifica las respuestas que recibes (interesado, con dudas o no interesado), para que tu equipo atienda primero lo importante. Se conecta con el servicio de IA que prefieras.</p>
+        </div>
+        <div class="opcion">
+          <h3>Excel, PDF y tu ERP</h3>
+          <p>Reportes en Excel y documentos en PDF que se generan solos, y conexión con tu ERP o tu checador, según el modelo que uses.</p>
+        </div>
+      </div>
+      <p class="aviso">Cada integración se evalúa según las herramientas que ya tienes.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion-clara" id="a-medida">
+    <div class="contenedor">
+      <h2>¿Necesitas algo que no está aquí?</h2>
+      <div class="medida" style="margin-top:32px">
+        <p>También desarrollamos módulos a la medida de tu operación. Lo platicamos, y te decimos qué se puede hacer, en cuánto tiempo y a qué costo.</p>
+        <ul>
+          <li>Control de producción y trazabilidad de lotes.</li>
+          <li>Lectura de documentos escaneados.</li>
+          <li>Organigrama y encuestas de clima laboral.</li>
+          <li>Formatos y certificados de calidad en PDF.</li>
+          <li>Conexión con tu ERP o tu checador, según el modelo que uses.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <div class="contenedor">
+      <h2>Cuéntanos qué necesitas</h2>
+      <p class="intro">Escríbenos y te respondemos con una propuesta para tu empresa.</p>
+      <div class="contacto-grid">
+        <a class="boton boton-claro" href="https://wa.me/525541932644?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20m%C3%B3dulos%20de%20Germina" rel="noopener">Escríbenos por WhatsApp</a>
+        <div class="datos">
+          <a href="tel:+525541932644">55 4193 2644</a>
+          <a href="mailto:ventas@germinasoluciones.com.mx">ventas@germinasoluciones.com.mx</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <span>© 2026 Germina. Soluciones digitales a tu medida.</span>
+    <span>Tú imaginas, nosotros creamos.</span>
+  </div>
+</footer>
+
+</body>
+</html>
